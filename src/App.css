@@ -24,6 +24,7 @@
   height: 2rem;
   color: #fff;
   filter: drop-shadow(0px 0px 5px #555);
+  cursor: pointer;
 }
 
 .arrow-left {
@@ -43,10 +44,14 @@
 .current-indicator {
   width: 15px;
   height: 15px;
-  background: #fff;
+  background: #b7b5b5;
   border-radius: 50%;
   border: none;
   outline: none;
   margin: 0 0.2rem;
   cursor: pointer;
+}
+
+.active-indicator {
+  background: #fff;
 }

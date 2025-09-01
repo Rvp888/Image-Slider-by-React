@@ -27,11 +27,19 @@ function App({ url, page, limit }) {
   }, [url]);
 
   if (loading) {
-    return <div>Loading data, Please wait !</div>;
+    return (
+      <div className="container">
+        <p>Loading data, Please wait !</p>
+      </div>
+    );
   }
 
   if (errorMsg !== null) {
-    return <div>Error occured! {errorMsg}</div>;
+    return (
+      <div className="container">
+        <p>Error occured! {errorMsg}</p>
+      </div>
+    );
   }
 
   function handlePrevious() {
@@ -40,6 +48,10 @@ function App({ url, page, limit }) {
 
   function handleNext() {
     setCurrentSlide(currentSlide === images.length - 1 ? 0 : currentSlide + 1);
+  }
+
+  function handleClick(index) {
+    setCurrentSlide(index);
   }
 
   return (
@@ -55,9 +67,7 @@ function App({ url, page, limit }) {
               alt={imageItem.download_url}
               src={imageItem.download_url}
               className={
-                currentSlide === index
-                  ? "current-image"
-                  : "current-image hide-current-image"
+                currentSlide === index ? "current-image" : "hide-current-image"
               }
             />
           ))
@@ -69,7 +79,13 @@ function App({ url, page, limit }) {
       <span className="circle-indicators">
         {images && images.length
           ? images.map((_, index) => (
-              <button key={index} className="current-indicator"></button>
+              <button
+                key={index}
+                className={`current-indicator ${
+                  currentSlide === index && "active-indicator"
+                }`}
+                onClick={() => handleClick(index)}
+              ></button>
             ))
           : null}
       </span>
